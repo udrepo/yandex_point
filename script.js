@@ -6,8 +6,9 @@ let pointData = {
 };
 
 
-function sendBack() {
-    console.log('hi from send back');
+function sendBack(pointData) {
+    console.log('lol');
+    console.log(pointData);
              messageHandler.postMessage("Hello from JS");
           }
 
@@ -74,9 +75,9 @@ function init() {
 
                 pointData.address = myPlacemark.properties._data.balloonContent;
                 pointData.coordinates = myPlacemark.geometry._coordinates;
-        
+                let text = `${pointData.address}: ${pointData.coordinates[0]}: ${pointData.coordinates[1]}`;
                 console.table(pointData);
-                sendBack();
+                sendBack(text);
         });
     }
 }
