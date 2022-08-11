@@ -9,7 +9,7 @@ let pointData = {
 function sendBack(pointData) {
     console.log('lol');
     console.log(pointData);
-             messageHandler.postMessage("Hello from JS");
+             messageHandler.postMessage(pointData);
           }
 
 
