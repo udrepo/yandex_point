@@ -5,6 +5,13 @@ let pointData = {
     address: ''
 };
 
+
+function sendBack() {
+    console.log('hi from send back');
+             messageHandler.postMessage("Hello from JS");
+          }
+
+
 function init() {
     var myPlacemark,
         myMap = new ymaps.Map('map', {
@@ -67,14 +74,9 @@ function init() {
 
                 pointData.address = myPlacemark.properties._data.balloonContent;
                 pointData.coordinates = myPlacemark.geometry._coordinates;
-sendback();
+        
                 console.table(pointData);
+                sendBack();
         });
     }
 }
-
-
-   function sendBack() {
-       console.log('hi from send back');
-                messageHandler.postMessage("Hello from JS");
-             }
