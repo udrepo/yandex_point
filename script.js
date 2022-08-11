@@ -72,3 +72,8 @@ function init() {
         });
     }
 }
+
+
+   function sendBack() {
+                messageHandler.postMessage("Hello from JS");
+             }
