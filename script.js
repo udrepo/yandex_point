@@ -16,13 +16,16 @@ function sendBack(pointData) {
 function init() {
     var myPlacemark,
         myMap = new ymaps.Map('map', {
-            zoom: 15,
+            zoom: 12,
             center: [42.313994, 69.592093],
-               controls: []
+               controls: ['searchControl']
           
         }, {
             searchControlProvider: 'yandex#search'
         });
+
+     
+   
 
     // Слушаем клик на карте.
     myMap.events.add('click', function (e) {
