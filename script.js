@@ -1,5 +1,6 @@
 ymaps.ready(init);
 
+
 let pointData = {
     coordinates: [],
     address: ''
@@ -7,7 +8,6 @@ let pointData = {
 
 
 function sendBack(pointData) {
-    console.log('lol');
     console.log(pointData);
              messageHandler.postMessage(pointData);
           }
@@ -16,8 +16,10 @@ function sendBack(pointData) {
 function init() {
     var myPlacemark,
         myMap = new ymaps.Map('map', {
+            zoom: 15,
             center: [42.313994, 69.592093],
-            zoom: 15
+               controls: []
+          
         }, {
             searchControlProvider: 'yandex#search'
         });
@@ -71,9 +73,9 @@ function init() {
                     balloonContent: firstGeoObject.getAddressLine()
                 });
 
-        
-
+                const pickedPoint = document.getElementById('header');
                 pointData.address = myPlacemark.properties._data.balloonContent;
+                pickedPoint.innerHTML = `Выбранный адрес: ${pointData.address}`;
                 pointData.coordinates = myPlacemark.geometry._coordinates;
                 let text = `${pointData.address}: ${pointData.coordinates[0]}: ${pointData.coordinates[1]}`;
                 console.table(pointData);
