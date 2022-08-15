@@ -18,13 +18,31 @@ function init() {
         myMap = new ymaps.Map('map', {
             zoom: 12,
             center: [42.313994, 69.592093],
-               controls: []
+               controls: ['searchControl']
           
         }, {
-            searchControlProvider: 'yandex#search'
+           
         });
 
-     
+        var searchControl = myMap.controls.get('searchControl')
+        searchControl.events.add('resultselect', function(e) {
+            var index = e.get('index');
+            searchControl.getResult(index).then(function(res) {
+        
+              console.info(res); // получаем координаты найденной точки
+        
+              const pickedPoint = document.getElementById('header');
+              pointData.address = res.properties._data.text;
+              pickedPoint.innerHTML = `Выбранный адрес: ${pointData.address}`;
+              pointData.coordinates = res.geometry._coordinates;
+              let text = `${pointData.address}: ${pointData.coordinates[0]}: ${pointData.coordinates[1]}`;
+              console.table(pointData);
+              sendBack(text);
+        
+        
+            });
+          })
+        console.log(myMap);
    
 
     // Слушаем клик на карте.
@@ -62,7 +80,7 @@ function init() {
         myPlacemark.properties.set('iconCaption', 'поиск...');
         ymaps.geocode(coords).then(function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-
+console.log(firstGeoObject);
             myPlacemark.properties
                 .set({
                     // Формируем строку с данными об объекте.
