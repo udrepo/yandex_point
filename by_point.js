@@ -14,7 +14,16 @@ function init() {
         controls: []
     });
 
-  let placemark = new ymaps.Placemark(point, {}, {});
+  let placemark = new ymaps.Placemark(point, {
+    balloonContentHeader: 'Evrika',
+    balloonContentBody: 'Эврика ғой'
+  }, {
+    iconLayout: 'default#image',
+    iconImageHref: './point.svg',
+    iconImageSize: [30,30],
+    iconImageOffset: [-13,-35]
+
+  });
 
   myMap.geoObjects.add(placemark);
 }
