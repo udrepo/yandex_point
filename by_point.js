@@ -4,6 +4,10 @@ console.log(urlParams.get('lon'))
 console.log(urlParams.get('lat'))
 
 const point = [urlParams.get('lat'), urlParams.get('lon')];
+const balloon = {
+  title: urlParams.get('title'),
+  address: urlParams.get('address')
+}
 
 ymaps.ready(init);
 
@@ -15,8 +19,8 @@ function init() {
     });
 
   let placemark = new ymaps.Placemark(point, {
-    balloonContentHeader: 'Evrika',
-    balloonContentBody: 'Эврика ғой'
+    balloonContentHeader: balloon.title,
+    balloonContentBody: balloon.address
   }, {
     iconLayout: 'default#image',
     iconImageHref: './point.svg',
