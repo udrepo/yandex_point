@@ -3,8 +3,11 @@ const urlParams = new URLSearchParams(queryString);
 
 
 let data = JSON.parse(urlParams.get('data')).data;
+let warehouses = JSON.parse(urlParams.get('warehouses')).data;
 let features = [];
 
+console.log(warehouses);
+console.log(data);
 
 let pointData = {
     lat : 0, lon : 0
@@ -24,9 +27,38 @@ for(let i=0; i<data.length; i++){
     },
     properties: {
       balloonContent: data[i].order_number
-    }
+    },
+    options: {
+        iconLayout: 'default#image',
+        iconImageHref: './point.svg',
+        iconImageSize: [30,30],
+        iconImageOffset: [-13,-35]
+            }
+
    });
 }
+
+for(let i=0; i<warehouses.length; i++){
+    features.push({
+     type: "Feature",
+     id: i+ 333,
+     geometry: {
+       type: "Point",
+       coordinates: warehouses[i].coords
+     },
+     properties: {
+       balloonContent: warehouses[i].order_number
+     },
+     options: {
+         iconLayout: 'default#image',
+         iconImageHref: './Stock.svg',
+         iconImageSize: [38,38],
+         iconImageOffset: [-13,-35]
+             }
+ 
+    });
+ }
+ 
 
 console.log(features);
 
@@ -37,7 +69,7 @@ ymaps.ready(init);
 function init () {
     
     var myMap = new ymaps.Map('map', {
-            center: [42.3146962, 69.5883282],
+            center: [42.317565011194475, 69.64582712893989],
             zoom: 12,
             controls: []
         }, {
