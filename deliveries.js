@@ -1,7 +1,6 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-
-
+const point = [urlParams.get('lat'), urlParams.get('lon')];
 let data = JSON.parse(urlParams.get('data')).data;
 let warehouses = JSON.parse(urlParams.get('warehouses')).data;
 let features = [];
@@ -69,7 +68,7 @@ ymaps.ready(init);
 function init () {
     
     var myMap = new ymaps.Map('map', {
-            center: [42.317565011194475, 69.64582712893989],
+            center: point,
             zoom: 12,
             controls: []
         }, {
