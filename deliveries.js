@@ -81,7 +81,7 @@ function init () {
         });
 
     myMap.geoObjects.add(objectManager);
-
+    myMap.controls.add('geolocationControl');
 
   var collection = {
     type: "FeatureCollection",
