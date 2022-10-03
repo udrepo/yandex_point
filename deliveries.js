@@ -82,7 +82,8 @@ function init () {
 
     myMap.geoObjects.add(objectManager);
     myMap.controls.add('geolocationControl');
-
+    myMap.controls.add('zoomControl');
+    
   var collection = {
     type: "FeatureCollection",
     features: features
