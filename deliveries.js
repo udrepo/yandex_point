@@ -74,7 +74,7 @@ for(let i=0; i<warehouses.length; i++){
   options: {
       iconLayout: 'default#image',
       iconImageHref: './pointMe.svg',
-      iconImageSize: [38,38],
+      iconImageSize: [31,31],
       iconImageOffset: [-13,-35]
           }
 
