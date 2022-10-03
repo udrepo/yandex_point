@@ -1,9 +1,12 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const point = [urlParams.get('lat'), urlParams.get('lon')];
+const locationOfCourier = [urlParams.get('locationLat'), urlParams.get('locationLon')];
+
 let data = JSON.parse(urlParams.get('data')).data;
 let warehouses = JSON.parse(urlParams.get('warehouses')).data;
 let features = [];
+ 
 
 console.log(warehouses);
 console.log(data);
@@ -50,13 +53,34 @@ for(let i=0; i<warehouses.length; i++){
      },
      options: {
          iconLayout: 'default#image',
-         iconImageHref: './Stock.svg',
+         iconImageHref: './point.png',
+       //  iconImageHref: './Stock.svg',
          iconImageSize: [38,38],
          iconImageOffset: [-13,-35]
              }
  
     });
  }
+
+ features.push({
+  type: "Feature",
+  id: 666,
+  geometry: {
+    type: "Point",
+    coordinates: locationOfCourier
+  },
+  properties: {
+    balloonContent: 'Вы здесь!'
+  },
+  options: {
+      iconLayout: 'default#image',
+      iconImageHref: './point.png',
+    //  iconImageHref: './Stock.svg',
+      iconImageSize: [38,38],
+      iconImageOffset: [-13,-35]
+          }
+
+ });
  
 
 console.log(features);
@@ -66,7 +90,7 @@ let lat,lon;
 ymaps.ready(init);
 
 function init () {
-    
+  var location = ymaps.geolocation;
     var myMap = new ymaps.Map('map', {
             center: point,
             zoom: 12,
@@ -81,9 +105,8 @@ function init () {
         });
 
     myMap.geoObjects.add(objectManager);
-    myMap.controls.add('geolocationControl');
     myMap.controls.add('zoomControl');
-    
+
   var collection = {
     type: "FeatureCollection",
     features: features
