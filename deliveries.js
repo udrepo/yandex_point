@@ -73,7 +73,7 @@ for(let i=0; i<warehouses.length; i++){
   },
   options: {
       iconLayout: 'default#image',
-      iconImageHref: './point.png',
+      iconImageHref: './pointMe.svg',
       iconImageSize: [38,38],
       iconImageOffset: [-13,-35]
           }
