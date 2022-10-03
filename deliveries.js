@@ -53,8 +53,7 @@ for(let i=0; i<warehouses.length; i++){
      },
      options: {
          iconLayout: 'default#image',
-         iconImageHref: './point.png',
-       //  iconImageHref: './Stock.svg',
+         iconImageHref: './Stock.svg',
          iconImageSize: [38,38],
          iconImageOffset: [-13,-35]
              }
@@ -75,7 +74,6 @@ for(let i=0; i<warehouses.length; i++){
   options: {
       iconLayout: 'default#image',
       iconImageHref: './point.png',
-    //  iconImageHref: './Stock.svg',
       iconImageSize: [38,38],
       iconImageOffset: [-13,-35]
           }
